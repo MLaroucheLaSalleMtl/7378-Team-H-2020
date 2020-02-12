@@ -33,7 +33,11 @@ public class RaycastHandler : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit, maxDistance/*, layerMask*/)) {
                 Transform hitObj = hit.transform;
-                Debug.Log("You hit " + hitObj.name.ToString());
+                if (hitObj.GetComponent<Destructable>()) {
+                    Debug.Log("You hit and object that IS destructable");
+                    hitObj.GetComponent<Destructable>().DoHit();
+                } else
+                    Debug.Log("You hit an object but it is NOT destructable");
             }
         }
     }   
