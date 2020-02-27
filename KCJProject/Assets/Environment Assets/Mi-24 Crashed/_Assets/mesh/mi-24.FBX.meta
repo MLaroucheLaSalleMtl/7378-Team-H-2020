@@ -1,0 +1,174 @@
+fileFormatVersion: 2
+guid: f08d9b3f841eda047a06befce8893a2e
+timeCreated: 1548592678
+licenseType: Store
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: _collider
+    100002: body
+    100004: //RootNode
+    100006: rotor big
+    100008: rotor small
+    100010: seat 1
+    100012: seat 2
+    100014: weapon
+    100016: window1
+    100018: window2
+    100020: window3
+    100022: window4
+    100024: window5
+    100026: window6
+    100028: window7
+    100030: window8
+    100032: wing
+    400000: _collider
+    400002: body
+    400004: //RootNode
+    400006: rotor big
+    400008: rotor small
+    400010: seat 1
+    400012: seat 2
+    400014: weapon
+    400016: window1
+    400018: window2
+    400020: window3
+    400022: window4
+    400024: window5
+    400026: window6
+    400028: window7
+    400030: window8
+    400032: wing
+    2100000: korpus
+    2100002: korpus_kabina
+    2100004: 'Material #0'
+    2100006: 02 - Default
+    2300000: _collider
+    2300002: body
+    2300004: rotor big
+    2300006: rotor small
+    2300008: seat 1
+    2300010: seat 2
+    2300012: weapon
+    2300014: window1
+    2300016: window2
+    2300018: window3
+    2300020: window4
+    2300022: window5
+    2300024: window6
+    2300026: window7
+    2300028: window8
+    2300030: wing
+    3300000: _collider
+    3300002: body
+    3300004: rotor big
+    3300006: rotor small
+    3300008: seat 1
+    3300010: seat 2
+    3300012: weapon
+    3300014: window1
+    3300016: window2
+    3300018: window3
+    3300020: window4
+    3300022: window5
+    3300024: window6
+    3300026: window7
+    3300028: window8
+    3300030: wing
+    4300000: body
+    4300002: window8
+    4300004: window1
+    4300006: window2
+    4300008: window3
+    4300010: window4
+    4300012: window5
+    4300014: window6
+    4300016: window7
+    4300018: _collider
+    4300020: rotor small
+    4300022: rotor big
+    4300024: seat 2
+    4300026: seat 1
+    4300028: wing
+    4300030: weapon
+    9500000: //RootNode
+  externalObjects: {}
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 0
+    importBlendShapes: 0
+    importCameras: 0
+    importLights: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

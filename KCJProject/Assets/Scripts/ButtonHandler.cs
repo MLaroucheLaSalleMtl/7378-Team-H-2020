@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class ButtonHandler : MonoBehaviour
 {
@@ -24,14 +25,13 @@ public class ButtonHandler : MonoBehaviour
     {
         GetComponent<Selectable>().Select();
     }
-    void Start()
-    {
-        
-    }
 
-   
-    void Update()
-    {
-        
+    public void UnPause() {
+        try {
+            SceneManager.UnloadSceneAsync("PauseMenu");
+        }
+        catch {
+            Debug.Log("Scene not loaded");
+        }
     }
 }

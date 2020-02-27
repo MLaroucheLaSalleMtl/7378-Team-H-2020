@@ -24,8 +24,7 @@ public class ObjectInteract : MonoBehaviour
             {
                 raycastedObject = hit.collider.gameObject;
                           
-                Debug.Log("You have interacted with an object");
-
+                
                 if (raycastedObject.GetComponent<InteractableHandler>())
                     raycastedObject.GetComponent<InteractableHandler>().DoInteraction();
                 else

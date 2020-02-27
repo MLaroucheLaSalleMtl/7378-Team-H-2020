@@ -31,10 +31,10 @@ public class RaycastHandler : MonoBehaviour
             RaycastHit hit;
             Ray ray = camera.ScreenPointToRay(Mouse.current.position.ReadValue());
 
-            if (Physics.Raycast(ray, out hit, maxDistance/*, layerMask*/)) {
+            if (Physics.Raycast(ray, out hit, maxDistance, layerMask)) {
                 Transform hitObj = hit.transform;
                 if (hitObj.GetComponent<Destructable>()) {
-                    Debug.Log("You hit and object that IS destructable");
+                    Debug.Log("You hit an object that IS destructable");
                     hitObj.GetComponent<Destructable>().DoHit();
                 } else
                     Debug.Log("You hit an object but it is NOT destructable");
