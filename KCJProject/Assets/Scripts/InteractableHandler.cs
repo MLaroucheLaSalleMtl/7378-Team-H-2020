@@ -45,7 +45,7 @@ public class InteractableHandler : MonoBehaviour
             isInteractable = true;
         }
     }
-    protected void OnTriggerExit(Collider other) {
+    protected virtual void OnTriggerExit(Collider other) {
         textMesh.enabled = false;
         isInteractable = false;
     }

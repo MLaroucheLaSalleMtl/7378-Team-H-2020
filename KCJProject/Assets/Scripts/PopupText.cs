@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 [RequireComponent(typeof(SphereCollider))]
 public class PopupText : MonoBehaviour
 {
     [SerializeField] private GameObject textPanel;
+    [SerializeField] private AudioSource alertSound;
     private bool alreadyInteracted = false;
 
     // Start is called before the first frame update
@@ -29,8 +31,9 @@ public class PopupText : MonoBehaviour
     protected void OnTriggerEnter(Collider other)
     {
         if (alreadyInteracted == false)
-        {
+        { 
             textPanel.gameObject.SetActive(true);
+            alertSound.Play();
             alreadyInteracted = true;
         } 
     }

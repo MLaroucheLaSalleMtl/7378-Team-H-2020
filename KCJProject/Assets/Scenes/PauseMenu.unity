@@ -233,8 +233,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -37.62}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: -9.125, y: -46.3}
+  m_SizeDelta: {x: 178.25, y: 47.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &769333417
 MonoBehaviour:
@@ -387,8 +387,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: -9.1, y: 10.7}
+  m_SizeDelta: {x: 178.3, y: 51.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1087021589
 MonoBehaviour:
@@ -625,8 +625,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 189.71}
-  m_SizeDelta: {x: 537.9, y: 128.4}
+  m_AnchoredPosition: {x: 17, y: 158.3}
+  m_SizeDelta: {x: 827.5, y: 191.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1542916805
 MonoBehaviour:
@@ -648,10 +648,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 5392e968a2a69d64a9a26cfa756a503f, type: 3}
-    m_FontSize: 14
+    m_FontSize: 13
     m_FontStyle: 0
     m_BestFit: 1
-    m_MinSize: 10
+    m_MinSize: 0
     m_MaxSize: 299
     m_Alignment: 1
     m_AlignByGeometry: 0
@@ -659,7 +659,10 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Pause
+  m_Text: 'Game Paused !!
+
+
+    do you want to continue or quit game?'
 --- !u!222 &1542916806
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -791,10 +794,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 5392e968a2a69d64a9a26cfa756a503f, type: 3}
-    m_FontSize: 14
-    m_FontStyle: 0
+    m_FontSize: 20
+    m_FontStyle: 1
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 2
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -944,10 +947,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 5392e968a2a69d64a9a26cfa756a503f, type: 3}
-    m_FontSize: 14
-    m_FontStyle: 0
+    m_FontSize: 20
+    m_FontStyle: 1
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 2
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0

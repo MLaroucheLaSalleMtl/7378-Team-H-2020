@@ -157,7 +157,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.7878365, g: 0.6226415, b: 0.8301887, a: 0}
+  m_BackGroundColor: {r: 0.5996753, g: 0.5377359, b: 0.7169812, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -352,7 +352,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 04a842e316b6f44bf8da702de26a8ed6, type: 3}
+    m_Font: {fileID: 12800000, guid: 62198017ad3d95d43be080aed88cc847, type: 3}
     m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 0
@@ -684,7 +684,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.4900487, g: 0.31759524, b: 0.5754717, a: 1}
+  m_Color: {r: 0.38169754, g: 0.1738163, b: 0.5849056, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -851,7 +851,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 04a842e316b6f44bf8da702de26a8ed6, type: 3}
+    m_Font: {fileID: 12800000, guid: 62198017ad3d95d43be080aed88cc847, type: 3}
     m_FontSize: 60
     m_FontStyle: 0
     m_BestFit: 0

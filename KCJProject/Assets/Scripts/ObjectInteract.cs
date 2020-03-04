@@ -19,15 +19,34 @@ public class ObjectInteract : MonoBehaviour
             RaycastHit hit;
             Vector3 forward = transform.TransformDirection(Vector3.forward);
             Ray ray = camera.ScreenPointToRay(Mouse.current.position.ReadValue());
-
+            
             if (Physics.Raycast(ray, out hit, rayLength, layerMaskInteract)) 
             {
                 raycastedObject = hit.collider.gameObject;
-                          
                 
-                if (raycastedObject.GetComponent<InteractableHandler>())
+
+                if (raycastedObject.GetComponent<InteractableHandler>()) {
                     raycastedObject.GetComponent<InteractableHandler>().DoInteraction();
-                else
+
+                } else
+                    Debug.Log("Not an interactable object");
+
+            }
+        }
+        if (context.canceled) {
+            Debug.Log("cancelled");
+            RaycastHit hit;
+            Vector3 forward = transform.TransformDirection(Vector3.forward);
+            Ray ray = camera.ScreenPointToRay(Mouse.current.position.ReadValue());
+
+            if (Physics.Raycast(ray, out hit, rayLength, layerMaskInteract)) {
+                raycastedObject = hit.collider.gameObject;
+
+
+                if (raycastedObject.GetComponent<BrokenInteractable>()) {
+                    raycastedObject.GetComponent<BrokenInteractable>().DoRelease();
+
+                } else
                     Debug.Log("Not an interactable object");
 
             }

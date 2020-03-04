@@ -163,14 +163,37 @@ public class GameManager : MonoBehaviour {
         btnEquip.interactable = flag;
     }
     public void DropFromMenu() {
-        inventory[selectedItem].GetComponent<Grabbable>().OnDrop();     
-    }
+        if (inventory.Count <= 0) return;        
+        inventory[selectedItem].GetComponent<Grabbable>().OnDrop();
+        if (inventory.Count <= 0) DescMenu(false);
+        }
     public void ActivateTxt(string s) {
         txtUI.text = s;
         Invoke("DeactivateTxt", 5f);
     }
     public void DeactivateTxt() {
         txtUI.text = "";
+    }
+
+    public bool HasTwoPaddles()
+    {
+        int paddles = 0;
+
+        foreach (GameObject item in inventory)
+        {
+            if (item.gameObject.tag == "Paddle")
+            {
+                paddles += 1;
+            }
+        }
+
+        if (paddles >= 2)
+        {
+            return true;
+        } else
+        {
+            return false;
+        }
     }
 
     /* THIS FUNCTION IS FOR TESTING PURPOSE ONLY */

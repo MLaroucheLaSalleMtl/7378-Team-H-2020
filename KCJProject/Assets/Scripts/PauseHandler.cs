@@ -35,6 +35,8 @@ public class PauseHandler : MonoBehaviour
         if (pause) {
             async = SceneManager.LoadSceneAsync("PauseMenu", LoadSceneMode.Additive); // load the new scene
             async.allowSceneActivation = true;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         } else {
             code.PauseGame(false);
             try {

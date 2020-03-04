@@ -12,8 +12,8 @@ EditorBuildSettings:
     path: Assets/Scenes/Loading.unity
     guid: cc4fac9d7e711164f9c6662f0e7faa02
   - enabled: 1
-    path: Assets/Scenes/Test Scene.unity
-    guid: a110c13b36d02aa4595f50c00903d327
+    path: Assets/Scenes/Level One.unity
+    guid: 808bc4f24ad1e9d4eb1cad05d4b26afd
   - enabled: 1
     path: Assets/Scenes/PauseMenu.unity
     guid: ff92a35aa2c7c5b44abebda59bcf0a6d

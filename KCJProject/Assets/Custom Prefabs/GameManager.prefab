@@ -45,6 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  healthbar: {fileID: 0}
+  health: 100
   isHolding: 0
   holding: {fileID: 0}
   UI: {fileID: 0}

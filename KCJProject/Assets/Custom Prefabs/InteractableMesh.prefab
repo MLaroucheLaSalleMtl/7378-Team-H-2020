@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3104370535499529466}
   - component: {fileID: 8802794179465328355}
   - component: {fileID: 5617157291733206819}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: InteractableMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,7 +27,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4130504595587699252}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -1.8300165}
   m_LocalScale: {x: 0.02, y: 0.02, z: 0.02}
   m_Children: []
@@ -101,7 +101,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4130504595587699252}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
   m_Name: 
@@ -112,7 +112,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Interact \n( E )"
+  m_text: "Grab \n( E )"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 181149dc0d9e67c468bd12b3f8e8983a, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 181149dc0d9e67c468bd12b3f8e8983a, type: 2}
@@ -181,9 +181,9 @@ MonoBehaviour:
   m_margin: {x: 54.02786, y: -6.6334624, z: 46.63098, w: -18.560867}
   m_textInfo:
     textComponent: {fileID: 5617157291733206819}
-    characterCount: 14
+    characterCount: 11
     spriteCount: 0
-    spaceCount: 3
+    spaceCount: 4
     wordCount: 2
     linkCount: 0
     lineCount: 2

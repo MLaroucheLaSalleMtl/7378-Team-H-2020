@@ -7,6 +7,10 @@ using UnityEngine.SceneManagement;
 
 public class ButtonHandler : MonoBehaviour
 {
+    private GameManager code;
+    void Start() {
+        code = GameManager.instance;
+    }
     public void OnDeselect(PointerEventData eventData)
     {
         Debug.Log("Deselected");
@@ -28,6 +32,7 @@ public class ButtonHandler : MonoBehaviour
 
     public void UnPause() {
         try {
+            code.PauseGame(false);
             SceneManager.UnloadSceneAsync("PauseMenu");
         }
         catch {
