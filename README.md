@@ -41,43 +41,43 @@ The following document into four sections; Assets, Tutorials, Scripts and Sounds
 
 ****ASSETS
 
-•	Mainframe Font
-o	https://www.1001fonts.com/mainframe-font.html
-o	(*Verified free for use)
-•	Crosshair Asset
-o	https://assetstore.unity.com/packages/2d/gui/icons/crosshairs-plus-139902 
-•	Unity Standard Assets (2019 Version) 
-o	*Distributed in class by Marc-André Larouche (Fall 2019)
-•	Ammo Box, Supply Box, Medical Box Asset
-o	https://assetstore.unity.com/packages/3d/props/furniture/boxes-pack-32717
-o	(Modified Animator component to fit the need of the project and added necessary components to the prefabs)
-•	Terrain Tools 
-o	*Distributed in class by Marc-André Larouche (Fall 2019)
-•	PBR Terrain Textures Asset
-o	https://assetstore.unity.com/packages/2d/textures-materials/pbr-terrain-textures-148320
-•	Terrain Package 
-o	(Not all assets from the package were used) *Distributed by Marc-André Larouche (Fall 2019)
-•	Old Rowboat Asset
-o	https://assetstore.unity.com/packages/3d/vehicles/sea/old-rowboat-31917
-•	Low Poly Combat Droid Asset
-o	https://assetstore.unity.com/packages/3d/low-poly-combat-drone-82234
-•	Tropical Skybox Asset
-o	https://assetstore.unity.com/packages/2d/textures-materials/sky/tropical-skybox-9497
-•	Abandoned Buildings Asset
-o	https://assetstore.unity.com/packages/3d/environments/abandoned-buildings-62875
-•	Forest Environment - Dynamic Nature Asset 
-o	https://assetstore.unity.com/packages/3d/vegetation/forest-environment-dynamic-nature-150668
-o	*Not the entire package was used, we picked assets that we needed to refine our terrain.
-•	Wrench Asset 
-o	https://assetstore.unity.com/packages/3d/props/tools/wrench-21148
-o	*Did not use the animations from the asset, simply used the prefab model.
-•	Main menu background
-o	http://www.fullhdwpp.com/industrial/cgi-airplane-crash-jungle-forest/
-•	White Smoke Particle System Asset
-o	https://assetstore.unity.com/packages/vfx/particles/white-smoke-particle-system-20404
-o	*Modified some parameters in the Animator to make sure this animation properly functions in our game and the way we want it to.
-•	FX Fire Free Asset
-o	https://assetstore.unity.com/packages/vfx/particles/fire-explosions/fx-fire-free-21587
+Mainframe Font
+https://www.1001fonts.com/mainframe-font.html
+(*Verified free for use)
+Crosshair Asset
+https://assetstore.unity.com/packages/2d/gui/icons/crosshairs-plus-139902 
+Unity Standard Assets (2019 Version) 
+*Distributed in class by Marc-André Larouche (Fall 2019)
+Ammo Box, Supply Box, Medical Box Asset
+https://assetstore.unity.com/packages/3d/props/furniture/boxes-pack-32717
+(Modified Animator component to fit the need of the project and added necessary components to the prefabs)
+Terrain Tools 
+*Distributed in class by Marc-André Larouche (Fall 2019)
+PBR Terrain Textures Asset
+https://assetstore.unity.com/packages/2d/textures-materials/pbr-terrain-textures-148320
+Terrain Package 
+(Not all assets from the package were used) *Distributed by Marc-André Larouche (Fall 2019)
+Old Rowboat Asset
+https://assetstore.unity.com/packages/3d/vehicles/sea/old-rowboat-31917
+Low Poly Combat Droid Asset
+https://assetstore.unity.com/packages/3d/low-poly-combat-drone-82234
+Tropical Skybox Asset
+https://assetstore.unity.com/packages/2d/textures-materials/sky/tropical-skybox-9497
+Abandoned Buildings Asset
+https://assetstore.unity.com/packages/3d/environments/abandoned-buildings-62875
+Forest Environment - Dynamic Nature Asset 
+https://assetstore.unity.com/packages/3d/vegetation/forest-environment-dynamic-nature-150668
+*Not the entire package was used, we picked assets that we needed to refine our terrain.
+Wrench Asset 
+https://assetstore.unity.com/packages/3d/props/tools/wrench-21148
+*Did not use the animations from the asset, simply used the prefab model.
+Main menu background
+http://www.fullhdwpp.com/industrial/cgi-airplane-crash-jungle-forest/
+White Smoke Particle System Asset
+https://assetstore.unity.com/packages/vfx/particles/white-smoke-particle-system-20404
+*Modified some parameters in the Animator to make sure this animation properly functions in our game and the way we want it to.
+FX Fire Free Asset
+https://assetstore.unity.com/packages/vfx/particles/fire-explosions/fx-fire-free-21587
 
 ***TUTORIALS
 
