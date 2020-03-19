@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 474104936442553483}
   - component: {fileID: 474104936442553482}
   - component: {fileID: 474104936442553481}
+  - component: {fileID: 4078616139637771684}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -51,6 +52,34 @@ MonoBehaviour:
   holding: {fileID: 0}
   UI: {fileID: 0}
   inventoryPanel: {fileID: 0}
+  txtUI: {fileID: 0}
+  selectedItem: 0
+  pause: 0
+  isInventory: 0
+--- !u!114 &474104936442553481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 474104936442553480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dfb5d0c0c365ac4095b67e59b526b12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4078616139637771684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 474104936442553480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88ad342b4bf5e3748a723de2591d752f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   inventorySize: 12
   inventory: []
   iconInventory:
@@ -84,19 +113,3 @@ MonoBehaviour:
   descImg: {fileID: 0}
   btnEquip: {fileID: 0}
   btnDrop: {fileID: 0}
-  txtUI: {fileID: 0}
-  selectedItem: 0
-  pause: 0
-  isInventory: 0
---- !u!114 &474104936442553481
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 474104936442553480}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6dfb5d0c0c365ac4095b67e59b526b12, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

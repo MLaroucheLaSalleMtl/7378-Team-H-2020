@@ -8,39 +8,29 @@ using TMPro;
 
 public class GameManager : MonoBehaviour {
     public static GameManager instance = null;
+    private static InventoryHandler ivn;
     [Tooltip("FPS controller should be attached here")] [SerializeField] private GameObject player;
     [Tooltip("Default healthbar Slider should be attached here")] [SerializeField] private Slider healthbar;
-    [Tooltip("Here we enter the amount of health we would like the player to have")][Range(0.0f,100.0f)] [SerializeField] private float health; // This will eventually be a non serialized field, but for development purposes we will keep it here.
+    [Tooltip("Here we enter the amount of health we would like the player to have - Debugging only")][Range(0.0f,100.0f)] [SerializeField] private float health; // This will eventually be a non serialized field, but for development purposes we will keep it here.
 
     [Tooltip("For Debugging only")] [SerializeField]private bool isHolding = false;
     [Tooltip("For Debugging only")] [SerializeField]private GameObject holding;
 
+    
     [Tooltip("Panel for UI should be attached here")] [SerializeField] private GameObject UI;
     [Tooltip("Panel Inventory should be attached here")] [SerializeField] private GameObject inventoryPanel;
 
-    [Tooltip("Inventory Size")]
-    [SerializeField] private int inventorySize;
-    [Tooltip("List of Objects on inventory")]
-    public List<GameObject> inventory = new List<GameObject>();
-
-    [Header("Inventory - UI")]
-    [Tooltip("List of inventory slots - Images")] [SerializeField] private Image[] iconInventory;
-    [Tooltip("List of inventory slots - Buttons")] [SerializeField] private Selectable[] btnItens;
-    [Tooltip("Default Image for empty slot on inventory")] [SerializeField] private Sprite emptyObj;
-
-    [Tooltip("Text UI that shows the name of the selected object")] [SerializeField] private Text txtName;
-    [Tooltip("Image UI that shows the icon of the selected object")] [SerializeField] private Image descImg;
-    [Tooltip("Reference of Equip Button should be attached here")] [SerializeField] private Selectable btnEquip;
-    [Tooltip("Reference of Drop Button should be attached here")] [SerializeField] private Selectable btnDrop;
-
     [Tooltip("Reference for Text Mesh Pro for UI - Add or Drop item")] [SerializeField] private TextMeshProUGUI txtUI;
-
-    [SerializeField]private int selectedItem;
+    private int inventorySize;
+    [SerializeField] private int selectedItem;
     public bool pause = false, isInventory = false;
+
 
     public GameObject Player { get => player; set => player = value; }
     public GameObject Holding { get => holding; set => holding = value; }
     public bool IsHolding { get => isHolding; set => isHolding = value; }
+    public int SelectedItem { get => selectedItem; set => selectedItem = value; }
+    public static InventoryHandler Ivn { get => ivn; set => ivn = value; }
     public int InventorySize { get => inventorySize; set => inventorySize = value; }
 
     void Awake() {
@@ -53,17 +43,15 @@ public class GameManager : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
-        foreach (Image img in iconInventory) img.sprite = emptyObj;
-        foreach (Selectable btn in btnItens) btn.interactable = false;
-        UpdateInventory();
+        Ivn = InventoryHandler.instance;
+        InventorySize = Ivn.InventorySize;
         txtUI.text = "";
-
         healthbar.maxValue = health; // Here we are initializing the healthbar with the value chosen
     }
 
     // Update is called once per frame
     void Update() {
-        healthbar.value = health; // The slider will get the value of health in the update function so we can manipulate easily simply using the health variable.
+        
     }
 
     // Handles pause game (Use this function to pause physics, time and raycast)
@@ -91,82 +79,49 @@ public class GameManager : MonoBehaviour {
     public void OnTab(InputAction.CallbackContext context) {//Enters Inventory
         if (pause) return;
         if (context.performed) {
-            if (!isInventory) {
+            if (!isInventory) { //If tab is pressed and the inventory is not showing -> show inventory
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
                 inventoryPanel.SetActive(true);
                 UI.SetActive(false);
                 DeactivateController(false);
-                Cursor.lockState = CursorLockMode.None;
-                Cursor.visible = true;
-                descImg.sprite = emptyObj;
-                DescMenu(false);
-            } else {
+                                
+                Ivn.DescMenu(false);
+            } else { //If tab is pressed and the inventory is showing -> close inventory
                 inventoryPanel.SetActive(false);
                 UI.SetActive(true);
                 DeactivateController(true);
-                selectedItem = 0;
+                SelectedItem = 0;
             }
             isInventory = !isInventory;
         }
     }
     public void AddInventory(GameObject obj) {
-        inventory.Add(obj);
-        this.iconInventory[inventory.Count - 1].sprite = obj.GetComponent<Grabbable>().Icon;
-        this.btnItens[inventory.Count - 1].interactable = true;
-        UpdateInventory();
+        Ivn.Add(obj);
         ActivateTxt("Added " + obj.GetComponent<Grabbable>().Name);
     }
     public void DropInventory(GameObject obj) {
-        inventory.Remove(obj);
-        iconInventory[selectedItem].sprite = emptyObj;
-        btnItens[selectedItem].interactable = false;        
-        UpdateInventory();
+        Ivn.Drop(obj,SelectedItem);
         ActivateTxt("Dropped " + obj.GetComponent<Grabbable>().Name);
     }
+
     public void SelectItem(int item) {
-        if (item > inventory.Count) return;
-        selectedItem = item;
-        descImg.sprite = inventory[selectedItem].GetComponent<Grabbable>().Icon;
-        txtName.text = inventory[selectedItem].GetComponent<Grabbable>().Name;
-        DescMenu(true);
+        if (item > Ivn.inventory.Count) return;
+        Ivn.SelectItem(item);
+       
+        Ivn.DescMenu(true);
     }
     public void HoldItem() {
-        if (inventory.Count <= 0) return;
-        Holding = inventory[selectedItem].gameObject;
+        if (Ivn.inventory.Count <= 0) return;
+        Holding = Ivn.inventory[SelectedItem].gameObject;
         Holding.SetActive(true);
-        foreach(GameObject item in inventory) {
-            if (item != Holding) item.SetActive(false);
-        }
+        Ivn.HoldItem(Holding);
         isHolding = true;
     }
-    public void UpdateInventory() {
-        if(inventory.Count <= 0) {
-            txtName.enabled = false;
-            descImg.sprite = emptyObj;
-            selectedItem = 0;
-        } else {
-            txtName.enabled = true;
-            int i = 0;
-            foreach(GameObject item in inventory) {
-                iconInventory[i].sprite = item.GetComponent<Grabbable>().Icon;
-                btnItens[i].interactable = true;
-                i++;
-            }
-            for(int z = i; z < inventorySize; z++) {
-                iconInventory[z].sprite = emptyObj;
-                btnItens[z].interactable = false;
-            }
-        }
-    }
-    public void DescMenu(bool flag) {
-        txtName.enabled = flag;
-        btnDrop.interactable = flag;
-        btnEquip.interactable = flag;
-    }
     public void DropFromMenu() {
-        if (inventory.Count <= 0) return;        
-        inventory[selectedItem].GetComponent<Grabbable>().OnDrop();
-        if (inventory.Count <= 0) DescMenu(false);
-        }
+        if (Ivn.inventory.Count <= 0) return;
+        Ivn.DropFromMenu(SelectedItem);
+    }
     public void ActivateTxt(string s) {
         txtUI.text = s;
         Invoke("DeactivateTxt", 5f);
@@ -179,7 +134,7 @@ public class GameManager : MonoBehaviour {
     {
         int paddles = 0;
 
-        foreach (GameObject item in inventory)
+        foreach (GameObject item in Ivn.inventory)
         {
             if (item.gameObject.tag == "Paddle")
             {
@@ -196,13 +151,24 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    /* THIS FUNCTION IS FOR TESTING PURPOSE ONLY */
-
-    public void LoseHealth()
+    public void LoseHealth(int lostHealth)
     {
-        health -= 10;
+        health -= lostHealth;
+        healthbar.value = health; //updates slider
+        if (health <= 0) {
+            health = 0;
+            //Broadcasts the player died. For handling of death use the function 'Dead' in any script that needs to handle death
+            BroadcastMessage("Dead",SendMessageOptions.DontRequireReceiver);
+        }
     }
-
-    /* END OF TESTING FUNCTION */
-
+    public void GiveHealth(int healPoints) {
+        health += healPoints;
+        Debug.Log(health);
+        if (health >= 100) health = 100;
+        healthbar.value = health; //updates slider
+    }
+    //Handles player death
+    private void Dead() {
+        Debug.Log("You are dead");
+    }
 }

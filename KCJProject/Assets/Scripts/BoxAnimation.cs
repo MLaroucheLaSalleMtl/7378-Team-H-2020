@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class BoxAnimation : InteractableHandler
 {
+    protected static GameManager code;
     [SerializeField] private Animator objectAnimation;
     [Tooltip("How many seconds before destroing the object after interaction")]
     [SerializeField] private float destroyAfter;
     private GameObject box;
-
+    new void Start() {
+        base.Start();
+        code = GameManager.instance;
+    }
     public override void DoInteraction()
     {
         if (!isInteractable) return;

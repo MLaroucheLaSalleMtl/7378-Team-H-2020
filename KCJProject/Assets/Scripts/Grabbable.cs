@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Grabbable : InteractableHandler {
     protected static GameManager code;
+    protected static InventoryHandler ivn;
     protected Camera cam;
     protected bool isChild = false;
     protected Rigidbody body;
@@ -22,6 +23,7 @@ public class Grabbable : InteractableHandler {
     new void Start() {
         base.Start();
         code = GameManager.instance;
+        ivn = InventoryHandler.instance;
         cam = code.Player.GetComponentsInChildren<Camera>()[1];
         body = GetComponent<Rigidbody>();
         base.setMesh();
@@ -29,8 +31,12 @@ public class Grabbable : InteractableHandler {
 
     public override void DoInteraction() {
         base.DoInteraction();
+        //Removing this causes a null error in the new input system even if the variables had been previously initiated
         code = GameManager.instance;
-        if (code.inventory.Count >= code.InventorySize) return;
+        ivn = InventoryHandler.instance;
+        /////
+        if (ivn.inventory.Count >= ivn.InventorySize) return;
+
         //if there is something in hand, put item in inventory and not hands
         if (!code.IsHolding) {
             code.Holding = this.gameObject;
@@ -62,7 +68,9 @@ public class Grabbable : InteractableHandler {
         this.gameObject.SetActive(true);
         code.DropInventory(this.gameObject);
     }
-    protected virtual void ShowInHands() {
+    protected virtual bool ShowInHands() {
+        ivn = InventoryHandler.instance;
+        if (ivn.inventory.Count >= ivn.InventorySize) return false;
         body = GetComponent<Rigidbody>();
         cam = code.Player.GetComponentsInChildren<Camera>()[1];
         //Deactivates the rigid body
@@ -75,6 +83,6 @@ public class Grabbable : InteractableHandler {
         isChild = true;
         this.textMesh.enabled = false;
         this.ChangeLayer(9);
-        
+        return true;
     }
 }
