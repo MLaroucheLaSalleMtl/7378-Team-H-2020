@@ -1,6 +1,8 @@
 # 7378-Team-H-2020
 Team Cauê Costa Monteiro Pizzol, Julien Gagnier and Komal
 
+!!!!!!!FOR PROPER FORMATTING PLEASE REFER TO PUSHED PDF FILES!!!!!!!!
+
 ############# GAME CONTROLS
 
 ALTERNATE MOVEMENT: The ARROW keys can also be used as movement keys. 
