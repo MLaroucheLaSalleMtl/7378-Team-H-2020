@@ -11,15 +11,7 @@ public class SetVolume : MonoBehaviour
 {
     [SerializeField] private AudioMixer audioMix;
     [SerializeField] private string parameterName;
-
-    public void SetVol(float vol)
-    {
-        Slider slide = GetComponent<Slider>();
-        audioMix.SetFloat(parameterName, vol);
-        slide.value = vol;
-        PlayerPrefs.SetFloat(parameterName, vol);
-        PlayerPrefs.Save();
-    }
+    private Slider slide;
 
     // Start is called before the first frame update
     void Start()
@@ -28,10 +20,11 @@ public class SetVolume : MonoBehaviour
         float v = PlayerPrefs.GetFloat(parameterName, 0);
         slide.value = v;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+    
+    public void SetVol(float vol) {
+        Slider slide = GetComponent<Slider>();
+        audioMix.SetFloat(parameterName, vol);
+        slide.value = vol;
+        PlayerPrefs.SetFloat(parameterName, vol);
     }
 }

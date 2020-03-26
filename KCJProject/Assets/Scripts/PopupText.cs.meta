@@ -3,7 +3,11 @@ guid: d0cde175b5a006649ad8304bd10d1aa1
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - textPanel: {instanceID: 0}
+  - alertSound: {instanceID: 0}
+  - objective: {fileID: 747257490360264830, guid: 65e1c82acfb70224db69a88fe332daf0,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

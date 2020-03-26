@@ -6,12 +6,12 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(SphereCollider))]
 public class BoatInteract : BrokenInteractable
 {
-    
-    [SerializeField] private GameObject textPanel;
+    private static TrackerHandler tracker;   
     [SerializeField] private GameObject exitPanel;
+    [SerializeField] private GameObject fixedBoat, exit;
     [SerializeField] private GameObject wrench;
-    [SerializeField] private AudioSource alertSound;
     [Tooltip("Here we attach the text panel telling the player to look for paddles after he fixes the boat")] [SerializeField] private GameObject textPanelFixed;
+    
     private bool alreadyInteracted = false;
     private bool isFixed = false;
     [SerializeField] private bool isFixing = false;
@@ -21,8 +21,9 @@ public class BoatInteract : BrokenInteractable
     new void Start()
     {
         base.Start();
+        tracker = TrackerHandler.instance;
+        fixedBoat.SetActive(false);
         gameObject.GetComponent<SphereCollider>().isTrigger = true;
-        textPanel.gameObject.SetActive(false);
         exitPanel.gameObject.SetActive(false);
         wrench.gameObject.SetActive(false);
         code = GameManager.instance;
@@ -32,11 +33,7 @@ public class BoatInteract : BrokenInteractable
     new void Update()
     {
         /* THIS MUST BE CHANGED TO SUPPORT INPUT SYSTEM */
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            textPanel.gameObject.SetActive(false);
-            textPanelFixed.gameObject.SetActive(false);
-        }
+        
         if (isInteractable) {
             if (Input.GetKey("e") && pct <= 100) {
                 pct = Mathf.Lerp(pct, 125f, Time.deltaTime);
@@ -51,16 +48,15 @@ public class BoatInteract : BrokenInteractable
 
     protected new void OnTriggerEnter(Collider other)
     {
+        if (other.gameObject.tag != "Player") return;
         if (alreadyInteracted == false)
         {
-            textPanel.gameObject.SetActive(true);
-            alertSound.Play();
             wrench.gameObject.SetActive(true);
             alreadyInteracted = true;
         }
-        if (other.gameObject.tag != "Player") return;
+                
         Wrench w;
-        //verifies if playes is holding the wrench
+        //verifies if player is holding the wrench
         try
         {
             w = code.Holding.GetComponent<Wrench>();
@@ -69,6 +65,7 @@ public class BoatInteract : BrokenInteractable
         {
             return;
         }
+
         if (code.IsHolding && w && !isFixed)
         {
             textMesh.enabled = true;
@@ -101,8 +98,7 @@ public class BoatInteract : BrokenInteractable
     {
         this.textMesh.text = "";
         isFixed = true;
-        textPanelFixed.SetActive(true);
-        alertSound.Play();
+        fixedBoat.SetActive(true);
     }
 
     public override void DoRelease() {

@@ -25,6 +25,13 @@ public class GameManager : MonoBehaviour {
     [SerializeField] private int selectedItem;
     public bool pause = false, isInventory = false;
 
+    [Header("Animation Properties")] [SerializeField] private Animator damageAnim;
+
+    [Header("Spawn Points")] [SerializeField] private GameObject levelOneSpawn;
+
+    [Header("Death Panel Prefab")] [SerializeField] private GameObject deathPanel;
+
+    [Header("Ambient Sound")] [Tooltip("Ambient sound SPECIFIC to current level")] [SerializeField] private AudioSource ambientNoise;
 
     public GameObject Player { get => player; set => player = value; }
     public GameObject Holding { get => holding; set => holding = value; }
@@ -47,11 +54,20 @@ public class GameManager : MonoBehaviour {
         InventorySize = Ivn.InventorySize;
         txtUI.text = "";
         healthbar.maxValue = health; // Here we are initializing the healthbar with the value chosen
+
+        deathPanel.SetActive(false);
+
+        Spawn(levelOneSpawn.transform.position);
     }
 
     // Update is called once per frame
     void Update() {
         
+    }
+
+    public void Spawn(Vector3 location)
+    {
+        player.transform.position = location;
     }
 
     // Handles pause game (Use this function to pause physics, time and raycast)
@@ -151,15 +167,40 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+    public void CheckIsPlayerDead()
+    {
+        if (health <= 0)
+        {
+            ambientNoise.volume = 0;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            PauseGame(true);
+            deathPanel.SetActive(true);
+            health = 0;
+            damageAnim.SetTrigger("StopDamage");
+            //Broadcasts the player died. For handling of death use the function 'Dead' in any script that needs to handle death
+            BroadcastMessage("Dead", SendMessageOptions.DontRequireReceiver);
+        }
+    }
+
+    public void FlowerDamage(float flowerDamageOverTime)
+    {
+        health -= flowerDamageOverTime * Time.deltaTime;
+        damageAnim.SetTrigger("Damage");
+        healthbar.value = health; //updates slider
+        CheckIsPlayerDead();
+    }
+
+    public void StopDamageAnim()
+    {
+        damageAnim.SetTrigger("StopDamage");
+    }
+
     public void LoseHealth(int lostHealth)
     {
         health -= lostHealth;
         healthbar.value = health; //updates slider
-        if (health <= 0) {
-            health = 0;
-            //Broadcasts the player died. For handling of death use the function 'Dead' in any script that needs to handle death
-            BroadcastMessage("Dead",SendMessageOptions.DontRequireReceiver);
-        }
+        CheckIsPlayerDead();
     }
     public void GiveHealth(int healPoints) {
         health += healPoints;

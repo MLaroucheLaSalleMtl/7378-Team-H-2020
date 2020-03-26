@@ -57,7 +57,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2180264, guid: 181149dc0d9e67c468bd12b3f8e8983a, type: 2}
+  - {fileID: 5598460697936706293, guid: 978bc4dc4115e4e40b47d6925e5981df, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -114,8 +114,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Grab \n( E )"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 181149dc0d9e67c468bd12b3f8e8983a, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 181149dc0d9e67c468bd12b3f8e8983a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 978bc4dc4115e4e40b47d6925e5981df, type: 2}
+  m_sharedMaterial: {fileID: 5598460697936706293, guid: 978bc4dc4115e4e40b47d6925e5981df,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -181,13 +182,13 @@ MonoBehaviour:
   m_margin: {x: 54.02786, y: -6.6334624, z: 46.63098, w: -18.560867}
   m_textInfo:
     textComponent: {fileID: 5617157291733206819}
-    characterCount: 11
+    characterCount: 0
     spriteCount: 0
-    spaceCount: 4
-    wordCount: 2
+    spaceCount: 0
+    wordCount: 0
     linkCount: 0
-    lineCount: 2
-    pageCount: 1
+    lineCount: 0
+    pageCount: 0
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
