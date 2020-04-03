@@ -22,15 +22,25 @@ public class FlowerDamage : MonoBehaviour
     void Update()
     {
         StartCoroutine("DamageOverTime");
+
+        if (code.reset == true)
+        {
+            flowerCollision = false;
+            playerAudioSource.Stop();
+            code.damagePanel.SetActive(false);
+            code.StopDamageAnim();
+        }
     }
     
     private void OnTriggerEnter(Collider other)
     {
+        code.damagePanel.SetActive(true);
         flowerCollision = true;
     }
 
     private void OnTriggerExit(Collider other)
     {
+        code.damagePanel.SetActive(false);
         code.StopDamageAnim();
         flowerCollision = false;
     }
@@ -55,7 +65,7 @@ public class FlowerDamage : MonoBehaviour
         while (flowerCollision == true)
         {
             DamageSound();
-            code.FlowerDamage(1f);
+            code.FlowerDamage(30f);
             yield return new WaitForSeconds(0.9f);
         }
     }

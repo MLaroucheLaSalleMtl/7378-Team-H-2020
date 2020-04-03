@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿/// Handles the objective tracker
+///by Caue
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -47,25 +49,6 @@ public class TrackerHandler : MonoBehaviour
         taskTextUI = panelObj.GetComponentsInChildren<Text>()[0];
         objTextUI = panelObj.GetComponentsInChildren<Text>()[1];
 
-        /*//Test only
-        for (int i = 0; i<8; i++) {
-            Selectable btnO = Instantiate(btn);
-            btnO.GetComponent<Objective>().Task = "objective " + i;
-            btnO.GetComponent<Objective>().Description = "Lorem " + i;
-            objectives.Add(btnO);
-        }
-        objectives[3].GetComponent<Objective>().Completed();
-
-        Selectable btns = Instantiate(btn);
-        btns.GetComponent<Objective>().Task = " new objective ";
-        btns.GetComponent<Objective>().Description = "Lorem ";
-        //NewObjective(btns);
-        CompletedObjective(btns);
-        //*/
-
-        ListObjectives();
-        Debug.Log("Button Height: " + btnObjH);
-
     }
 
     // Update is called once per frame
@@ -80,7 +63,6 @@ public class TrackerHandler : MonoBehaviour
     }
     //lists all objectives
     public void ListObjectives() {
-
         UpdateScrollArea();        
         //sets the point in the screen for first ojective
         float j = (objectives.Count * -btnObjH) + btnObjH;
@@ -106,7 +88,7 @@ public class TrackerHandler : MonoBehaviour
     }
 
     public void OnTracker(InputAction.CallbackContext context) {
-        if (code.pause) return;
+        if (code.pause || code.isInventory) return;
         if (context.performed) {
             if (!isTracker) {
                 Cursor.lockState = CursorLockMode.None;
@@ -123,8 +105,8 @@ public class TrackerHandler : MonoBehaviour
 
                 code.DeactivateController(true);
             }
+            code.isTracker = isTracker = !isTracker;
         }
-        isTracker = !isTracker;
     }
 
     public void NewObjective(Selectable newObj) {
@@ -144,6 +126,7 @@ public class TrackerHandler : MonoBehaviour
     }
     //updates the tracker menu with the latest objective
     private void UpdateTracker() {
+        Debug.Log("Update");
         Objective o = objectives[objectives.Count - 1].GetComponent<Objective>();
         currDescTxt.text = o.Description;
         currTaskTxt.text = o.Task;

@@ -23,6 +23,9 @@ public class InventoryHandler : MonoBehaviour
     [Tooltip("Reference of Equip Button should be attached here")] [SerializeField] private Selectable btnEquip;
     [Tooltip("Reference of Drop Button should be attached here")] [SerializeField] private Selectable btnDrop;
 
+    [Header("List of itens prefab")]
+    [SerializeField] private GameObject[] items;
+
 
     public int InventorySize { get => inventorySize; set => inventorySize = value; }
 
@@ -107,9 +110,20 @@ public class InventoryHandler : MonoBehaviour
         btnEquip.interactable = flag;
     }
     public void DropFromMenu(int selectedItem) {
+        Debug.Log(inventory[selectedItem].ToString());
         if (inventory.Count <= 0) return;
         inventory[selectedItem].GetComponent<Grabbable>().OnDrop();
         if (inventory.Count <= 0) DescMenu(false);
+    }
+
+    public void AddFromDisk(int[] it) {
+        if (it.Length <= 0) return;
+        Init();
+        inventory.Clear();
+        foreach(int i in it) {
+            if (i <= items.Length)
+                Instantiate(items[i]).GetComponent<Grabbable>().DoInteraction();
+        }
     }
 
 }

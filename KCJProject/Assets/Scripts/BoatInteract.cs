@@ -82,6 +82,7 @@ public class BoatInteract : BrokenInteractable
             Cursor.visible = true;
             code.PauseGame(true);
             alreadyInsideCollider = true;
+            code.FinishLevel();
         }
     }
 

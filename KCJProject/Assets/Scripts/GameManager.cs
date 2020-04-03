@@ -9,6 +9,9 @@ using TMPro;
 public class GameManager : MonoBehaviour {
     public static GameManager instance = null;
     private static InventoryHandler ivn;
+    private static CheckpointHandler checkPointHandlerCode;
+    [Header("Level")]
+    [Tooltip("Level for this Game Manager")] [SerializeField]private int level;
     [Tooltip("FPS controller should be attached here")] [SerializeField] private GameObject player;
     [Tooltip("Default healthbar Slider should be attached here")] [SerializeField] private Slider healthbar;
     [Tooltip("Here we enter the amount of health we would like the player to have - Debugging only")][Range(0.0f,100.0f)] [SerializeField] private float health; // This will eventually be a non serialized field, but for development purposes we will keep it here.
@@ -23,22 +26,34 @@ public class GameManager : MonoBehaviour {
     [Tooltip("Reference for Text Mesh Pro for UI - Add or Drop item")] [SerializeField] private TextMeshProUGUI txtUI;
     private int inventorySize;
     [SerializeField] private int selectedItem;
-    public bool pause = false, isInventory = false;
+    [HideInInspector] public bool pause = false, isInventory = false, isTracker = false;
 
     [Header("Animation Properties")] [SerializeField] private Animator damageAnim;
+    [SerializeField] public GameObject damagePanel;
 
-    [Header("Spawn Points")] [SerializeField] private GameObject levelOneSpawn;
-
-    [Header("Death Panel Prefab")] [SerializeField] private GameObject deathPanel;
+    [Header("Death Panel Prefab")] [SerializeField] public GameObject deathPanel;
 
     [Header("Ambient Sound")] [Tooltip("Ambient sound SPECIFIC to current level")] [SerializeField] private AudioSource ambientNoise;
 
+    [HideInInspector] public bool reset = false;
+    /*
+    * This public boolean is used in other scripts such as flower damage to know if player is being 
+    * reset (respawned) to stop any damage incoming since we are not calling the OnTriggerExit located 
+    * inside these scripts when moving the player on respawn
+    */
+
+    [HideInInspector] public SetPos setPos;
+    [HideInInspector] public SetInventory setInventory;
+    [HideInInspector] public SetGameLevel setLevel;
+
     public GameObject Player { get => player; set => player = value; }
     public GameObject Holding { get => holding; set => holding = value; }
+    public float Health { get => health; set => health = value; }
     public bool IsHolding { get => isHolding; set => isHolding = value; }
     public int SelectedItem { get => selectedItem; set => selectedItem = value; }
     public static InventoryHandler Ivn { get => ivn; set => ivn = value; }
     public int InventorySize { get => inventorySize; set => inventorySize = value; }
+    public int Level { get => level; set => level = value; }
 
     void Awake() {
         if (instance == null) {
@@ -48,31 +63,53 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+
     // Start is called before the first frame update
     void Start() {
+        checkPointHandlerCode = CheckpointHandler.instance;
         Ivn = InventoryHandler.instance;
+        //checkPointHandlerCode = CheckpointHandler.instance;
         InventorySize = Ivn.InventorySize;
         txtUI.text = "";
-        healthbar.maxValue = health; // Here we are initializing the healthbar with the value chosen
 
         deathPanel.SetActive(false);
 
-        Spawn(levelOneSpawn.transform.position);
+        player.SetActive(false);
+        setPos = GetComponent<SetPos>();
+        setInventory = GetComponent<SetInventory>();
+        setLevel = GetComponent<SetGameLevel>();
+        checkPointHandlerCode.Spawn();
+        Init();
     }
 
+    //Initialize each level
+    private void Init() {
+        setLevel.SetLevel();
+        setLevel.Write();
+        if (Level == 1) {
+            healthbar.maxValue = health; // Here we are initializing the healthbar with the value chosen
+        } else {
+            checkPointHandlerCode.Read();
+        }
+       
+    }
+    
+    public void FinishLevel() {
+        checkPointHandlerCode.lastCheckPointPos = Player.transform.position;
+        checkPointHandlerCode.lastCheckPointRot = Player.transform.rotation;
+        checkPointHandlerCode.GetCurrentHealth();
+        checkPointHandlerCode.Save();
+        GetComponent<LoadingScene>().BtnLoadScene("Level Two");
+    }
     // Update is called once per frame
     void Update() {
-        
+
     }
 
-    public void Spawn(Vector3 location)
-    {
-        player.transform.position = location;
-    }
 
     // Handles pause game (Use this function to pause physics, time and raycast)
     public void PauseGame(bool pause) {
-        if (isInventory) return;
+        if (isInventory || isTracker) return;
         DeactivateController(!pause);
         PauseTime(pause);
         this.pause = pause;
@@ -93,7 +130,7 @@ public class GameManager : MonoBehaviour {
             Holding.GetComponent<Grabbable>().OnDrop();
     }
     public void OnTab(InputAction.CallbackContext context) {//Enters Inventory
-        if (pause) return;
+        if (pause || isTracker) return;
         if (context.performed) {
             if (!isInventory) { //If tab is pressed and the inventory is not showing -> show inventory
                 Cursor.lockState = CursorLockMode.None;
@@ -124,7 +161,7 @@ public class GameManager : MonoBehaviour {
     public void SelectItem(int item) {
         if (item > Ivn.inventory.Count) return;
         Ivn.SelectItem(item);
-       
+        SelectedItem = item;
         Ivn.DescMenu(true);
     }
     public void HoldItem() {
@@ -136,6 +173,7 @@ public class GameManager : MonoBehaviour {
     }
     public void DropFromMenu() {
         if (Ivn.inventory.Count <= 0) return;
+        Debug.Log(SelectedItem);
         Ivn.DropFromMenu(SelectedItem);
     }
     public void ActivateTxt(string s) {
@@ -170,17 +208,20 @@ public class GameManager : MonoBehaviour {
     public void CheckIsPlayerDead()
     {
         if (health <= 0)
-        {
-            ambientNoise.volume = 0;
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-            PauseGame(true);
-            deathPanel.SetActive(true);
-            health = 0;
-            damageAnim.SetTrigger("StopDamage");
+        {            
             //Broadcasts the player died. For handling of death use the function 'Dead' in any script that needs to handle death
             BroadcastMessage("Dead", SendMessageOptions.DontRequireReceiver);
         }
+    }
+
+    public void DeactivateDeath()
+    {
+        ambientNoise.volume = 100;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        PauseGame(false);
+        deathPanel.SetActive(false);
+        reset = true;
     }
 
     public void FlowerDamage(float flowerDamageOverTime)
@@ -202,7 +243,7 @@ public class GameManager : MonoBehaviour {
         healthbar.value = health; //updates slider
         CheckIsPlayerDead();
     }
-    public void GiveHealth(int healPoints) {
+    public void GiveHealth(float healPoints) {
         health += healPoints;
         Debug.Log(health);
         if (health >= 100) health = 100;
@@ -210,6 +251,12 @@ public class GameManager : MonoBehaviour {
     }
     //Handles player death
     private void Dead() {
-        Debug.Log("You are dead");
+        ambientNoise.volume = 0;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        PauseGame(true);
+        deathPanel.SetActive(true);
+        health = 0;
+        damageAnim.SetTrigger("StopDamage");
     }
 }

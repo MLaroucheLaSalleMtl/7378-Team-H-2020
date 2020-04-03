@@ -31,7 +31,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7273878916177877017}
   m_LocalRotation: {x: -0.5678437, y: 0, z: 0, w: 0.82313645}
-  m_LocalPosition: {x: 140.91644, y: 6.879, z: 256.078}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5549473372296349602}
@@ -290,27 +290,27 @@ PrefabInstance:
     - target: {fileID: 5617157291733206819, guid: 25965402171ad6d4db721cfca323cfdf,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 11
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5617157291733206819, guid: 25965402171ad6d4db721cfca323cfdf,
         type: 3}
       propertyPath: m_textInfo.spaceCount
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5617157291733206819, guid: 25965402171ad6d4db721cfca323cfdf,
         type: 3}
       propertyPath: m_textInfo.wordCount
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5617157291733206819, guid: 25965402171ad6d4db721cfca323cfdf,
         type: 3}
       propertyPath: m_textInfo.lineCount
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5617157291733206819, guid: 25965402171ad6d4db721cfca323cfdf,
         type: 3}
       propertyPath: m_textInfo.pageCount
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 25965402171ad6d4db721cfca323cfdf, type: 3}

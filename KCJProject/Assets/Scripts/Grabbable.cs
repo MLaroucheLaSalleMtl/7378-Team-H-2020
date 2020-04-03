@@ -10,6 +10,7 @@ public class Grabbable : InteractableHandler {
     protected bool isChild = false;
     protected Rigidbody body;
     [SerializeField] protected Sprite icon;
+    protected int id; //Identifies which item is. every grabbable should have an unique id
 
     [Tooltip("Force added to dropped item - 1 drops item straight to the floor")][SerializeField]protected float dropForce = 1f;
     [Tooltip("Object name - It will be displayed on the inventory")][SerializeField] protected string name;
@@ -54,7 +55,7 @@ public class Grabbable : InteractableHandler {
         }
     }
     public void OnDrop() {
-        if (code.Holding == this.gameObject) {
+        if (code.Holding !=null && code.Holding == this.gameObject) {
             code.IsHolding = false;
             code.Holding = null;
         }
@@ -84,5 +85,8 @@ public class Grabbable : InteractableHandler {
         this.textMesh.enabled = false;
         this.ChangeLayer(9);
         return true;
+    }
+    public int GetID() {
+        return this.id;
     }
 }

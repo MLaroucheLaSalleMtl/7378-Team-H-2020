@@ -6,6 +6,7 @@ public class Paddle : Grabbable
 {
     new void Start() {
         base.Start();
+        base.id = 1;
     }
     public override void DoInteraction() {
         base.DoInteraction();

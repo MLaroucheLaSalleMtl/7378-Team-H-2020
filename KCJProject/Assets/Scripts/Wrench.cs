@@ -8,6 +8,7 @@ public class Wrench : Grabbable
     new void Start()
     {
         base.Start();
+        base.id = 0;
     }
     public override void DoInteraction() {        
         base.DoInteraction();
