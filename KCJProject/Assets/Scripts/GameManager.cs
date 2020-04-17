@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using TMPro;
 
+
 public class GameManager : MonoBehaviour {
     public static GameManager instance = null;
     private static InventoryHandler ivn;
@@ -15,6 +16,9 @@ public class GameManager : MonoBehaviour {
     [Tooltip("FPS controller should be attached here")] [SerializeField] private GameObject player;
     [Tooltip("Default healthbar Slider should be attached here")] [SerializeField] private Slider healthbar;
     [Tooltip("Here we enter the amount of health we would like the player to have - Debugging only")][Range(0.0f,100.0f)] [SerializeField] private float health; // This will eventually be a non serialized field, but for development purposes we will keep it here.
+    //[Tooltip("Default stamina slider should be attached here")] [SerializeField] private Slider staminaBar;
+    //[Tooltip("Here we enter the amount of stamina we would like the player to have - Debugging only")][Range(0.0f, 100.0f)] [SerializeField] private float stamina;
+
 
     [Tooltip("For Debugging only")] [SerializeField]private bool isHolding = false;
     [Tooltip("For Debugging only")] [SerializeField]private GameObject holding;
@@ -35,6 +39,8 @@ public class GameManager : MonoBehaviour {
 
     [Header("Ambient Sound")] [Tooltip("Ambient sound SPECIFIC to current level")] [SerializeField] private AudioSource ambientNoise;
 
+    [Header("Death Panel Default Button")] [SerializeField] private Selectable defaultSelected_onDeath;
+
     [HideInInspector] public bool reset = false;
     /*
     * This public boolean is used in other scripts such as flower damage to know if player is being 
@@ -49,6 +55,7 @@ public class GameManager : MonoBehaviour {
     public GameObject Player { get => player; set => player = value; }
     public GameObject Holding { get => holding; set => holding = value; }
     public float Health { get => health; set => health = value; }
+    //public float Stamina { get => stamina; set => stamina = value; }
     public bool IsHolding { get => isHolding; set => isHolding = value; }
     public int SelectedItem { get => selectedItem; set => selectedItem = value; }
     public static InventoryHandler Ivn { get => ivn; set => ivn = value; }
@@ -136,6 +143,7 @@ public class GameManager : MonoBehaviour {
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
                 inventoryPanel.SetActive(true);
+                Ivn.HighlightIvn();
                 UI.SetActive(false);
                 DeactivateController(false);
                                 
@@ -162,7 +170,7 @@ public class GameManager : MonoBehaviour {
         if (item > Ivn.inventory.Count) return;
         Ivn.SelectItem(item);
         SelectedItem = item;
-        Ivn.DescMenu(true);
+        Ivn.DescMenu(true);        
     }
     public void HoldItem() {
         if (Ivn.inventory.Count <= 0) return;
@@ -259,4 +267,22 @@ public class GameManager : MonoBehaviour {
         health = 0;
         damageAnim.SetTrigger("StopDamage");
     }
+
+    //public void SprintStaminaLoss(float staminaLossOverSprint)
+    //{
+    //    stamina -= staminaLossOverSprint * Time.deltaTime;
+    //    staminaBar.value = stamina; // updates slider
+    //}
+
+
+    //public bool isRunning()
+    //{
+    //    if (Player.GetComponent<FirstPersonController>().walk == true)
+    //    {
+    //        return true;
+    //    } else
+    //    {
+    //        return false;
+    //    }
+    //}
 }

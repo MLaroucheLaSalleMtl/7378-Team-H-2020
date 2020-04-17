@@ -96,6 +96,12 @@ public class TrackerHandler : MonoBehaviour
                 inventoryPanel.SetActive(false);
                 UI.SetActive(false);
                 trackerPanel.SetActive(true);
+                try {
+                    scrollArea.GetComponentsInChildren<Selectable>()[scrollArea.GetComponentsInChildren<Selectable>().Length-1].Select();
+                }
+                catch {
+                    Debug.Log("no objectives");
+                }
 
                 code.DeactivateController(false);
             } else {
@@ -110,6 +116,7 @@ public class TrackerHandler : MonoBehaviour
     }
 
     public void NewObjective(Selectable newObj) {
+        newObj.interactable = true;
         objectives.Add(newObj);
         UpdateTracker();
         ShowUI(newObj.GetComponent<Objective>());

@@ -62,6 +62,7 @@ public class InventoryHandler : MonoBehaviour
         this.iconInventory[inventory.Count - 1].sprite = obj.GetComponent<Grabbable>().Icon;
         this.btnItens[inventory.Count - 1].interactable = true;
         UpdateInventory();
+        HoldItem(obj);
     }
 
     public void Drop(GameObject obj, int selectedItem) {
@@ -82,6 +83,7 @@ public class InventoryHandler : MonoBehaviour
         foreach (GameObject item in inventory) {
             if (item != holding) item.SetActive(false);
         }
+        holding.SetActive(true);
     }
     public void UpdateInventory() {
         if (inventory.Count <= 0) {
@@ -108,6 +110,7 @@ public class InventoryHandler : MonoBehaviour
         txtName.enabled = flag;
         btnDrop.interactable = flag;
         btnEquip.interactable = flag;
+        if (btnEquip.interactable) btnEquip.Select();
     }
     public void DropFromMenu(int selectedItem) {
         Debug.Log(inventory[selectedItem].ToString());
@@ -124,6 +127,11 @@ public class InventoryHandler : MonoBehaviour
             if (i <= items.Length)
                 Instantiate(items[i]).GetComponent<Grabbable>().DoInteraction();
         }
+    }
+
+    //highlights first inventory item, if present, for gamepad use
+    public void HighlightIvn() {
+        if (btnItens[0].interactable) btnItens[0].Select();
     }
 
 }

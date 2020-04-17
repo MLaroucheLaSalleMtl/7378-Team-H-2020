@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Audio;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(SphereCollider))]
 public class PopupText : MonoBehaviour
@@ -64,5 +65,11 @@ public class PopupText : MonoBehaviour
 
     private void Objective() {
         tracker.NewObjective(objective);
+    }
+
+    public void OnClose(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        textPanel.gameObject.SetActive(false);
     }
 }

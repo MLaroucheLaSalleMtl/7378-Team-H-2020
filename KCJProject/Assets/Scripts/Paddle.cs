@@ -21,4 +21,5 @@ public class Paddle : Grabbable
         gameObject.transform.localEulerAngles = new Vector3(-142.58f, gameObject.transform.localEulerAngles.y + 35f, gameObject.transform.localEulerAngles.z + 70f);
         return true;
     }
+
 }

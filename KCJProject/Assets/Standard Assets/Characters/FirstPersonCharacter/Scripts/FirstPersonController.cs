@@ -46,17 +46,24 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private float v = 0;
         private bool jumping = false;
         private bool crouch = false;
-        private bool walk = false;
+        public bool walk = false;
+
+        private Vector2 deltaMouse = new Vector2(0, 0);
 
         public void OnMove(InputAction.CallbackContext context) {
             Vector2 value = context.ReadValue<Vector2>();
             h = value.x;
             v = value.y;
         }
+
+        public void OnLook(InputAction.CallbackContext context)
+        {
+            deltaMouse = context.ReadValue<Vector2>();
+        }
+
         public void OnJump(InputAction.CallbackContext context) {
             if (context.started)
                 jumping = true;
-
         }
 
         public void OnCrouch(InputAction.CallbackContext context) {
@@ -81,7 +88,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_AudioSource = GetComponent<AudioSource>();
 			m_MouseLook.Init(transform , m_Camera.transform);
         }
-
 
         // Update is called once per frame
         private void Update()
@@ -262,9 +268,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         private void RotateView()
         {
-            m_MouseLook.LookRotation (transform, m_Camera.transform);
+            m_MouseLook.LookRotation (transform, m_Camera.transform, deltaMouse);
         }
-
 
         private void OnControllerColliderHit(ControllerColliderHit hit)
         {

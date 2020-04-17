@@ -1,5 +1,33 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-6086814075304652062
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d65e486e4de6e5448a8fbb43dc8756a0, type: 3}
+  m_Name: Grain
+  m_EditorClassIdentifier: 
+  active: 1
+  enabled:
+    overrideState: 1
+    value: 1
+  colored:
+    overrideState: 0
+    value: 1
+  intensity:
+    overrideState: 1
+    value: 0.037
+  size:
+    overrideState: 0
+    value: 1
+  lumContrib:
+    overrideState: 0
+    value: 0.8
 --- !u!114 &-5502681019806464493
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -53,7 +81,7 @@ MonoBehaviour:
     value: 1
   temperature:
     overrideState: 1
-    value: 13
+    value: 21
   tint:
     overrideState: 0
     value: 0
@@ -71,7 +99,7 @@ MonoBehaviour:
     value: 0
   postExposure:
     overrideState: 1
-    value: 0.5
+    value: 1.64
   contrast:
     overrideState: 0
     value: 0
@@ -1329,7 +1357,7 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 5
+    value: 14.69
   threshold:
     overrideState: 1
     value: 3
@@ -1379,7 +1407,7 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 1
+    value: 1.44
   color:
     overrideState: 0
     value: {r: 0, g: 0, b: 0, a: 1}
@@ -1434,7 +1462,7 @@ MonoBehaviour:
     value: {x: 0.5, y: 0.5}
   intensity:
     overrideState: 1
-    value: 0.25
+    value: 0.447
   smoothness:
     overrideState: 0
     value: 0.2
@@ -1451,6 +1479,43 @@ MonoBehaviour:
   opacity:
     overrideState: 0
     value: 1
+--- !u!114 &-1818295975278917588
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a34fa72bd4185749832024e9c8010bf, type: 3}
+  m_Name: ScreenSpaceReflections
+  m_EditorClassIdentifier: 
+  active: 1
+  enabled:
+    overrideState: 1
+    value: 1
+  preset:
+    overrideState: 0
+    value: 2
+  maximumIterationCount:
+    overrideState: 0
+    value: 16
+  resolution:
+    overrideState: 0
+    value: 0
+  thickness:
+    overrideState: 0
+    value: 8
+  maximumMarchDistance:
+    overrideState: 0
+    value: 100
+  distanceFade:
+    overrideState: 0
+    value: 0
+  vignette:
+    overrideState: 1
+    value: 0.417
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1470,6 +1535,8 @@ MonoBehaviour:
   - {fileID: 1101906865853547656}
   - {fileID: -5502681019806464493}
   - {fileID: 5358254701814054990}
+  - {fileID: -1818295975278917588}
+  - {fileID: -6086814075304652062}
 --- !u!114 &1101906865853547656
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1485,14 +1552,14 @@ MonoBehaviour:
   active: 1
   enabled:
     overrideState: 1
-    value: 1
+    value: 0
   spectralLut:
     overrideState: 0
     value: {fileID: 0}
     defaultState: 1
   intensity:
     overrideState: 1
-    value: 0.05
+    value: 0
   fastMode:
     overrideState: 0
     value: 0
@@ -1514,13 +1581,13 @@ MonoBehaviour:
     value: 1
   focusDistance:
     overrideState: 1
-    value: 10
+    value: 9
   aperture:
     overrideState: 1
-    value: 22.3
+    value: 11.1
   focalLength:
     overrideState: 1
-    value: 59
+    value: 1
   kernelSize:
     overrideState: 0
     value: 1

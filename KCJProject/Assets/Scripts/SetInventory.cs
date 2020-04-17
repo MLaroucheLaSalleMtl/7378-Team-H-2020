@@ -20,7 +20,7 @@ public class SetInventory : MonoBehaviour
         
     }
     public void SetInv(List<GameObject> inv) {
-        string invS = "";
+        string invS = "N"; //N means empty inventory
         foreach (GameObject i in inv) {
             try {
                 invS = i.GetComponent<Grabbable>().GetID() + ";";
@@ -32,7 +32,8 @@ public class SetInventory : MonoBehaviour
         PlayerPrefs.SetString("inventory", invS);
     }
     public int[] GetInv() {
-        string inv = PlayerPrefs.GetString("inventory", "");
+        string inv = PlayerPrefs.GetString("inventory", "N");
+        if (inv.Equals("N")) return new int[0];
         string[] invS = inv.Split(';');
         int[] invI = new int[invS.Length];
         for(int i = 0; i < invS.Length; i++) {

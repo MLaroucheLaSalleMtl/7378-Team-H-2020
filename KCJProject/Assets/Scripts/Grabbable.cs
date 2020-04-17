@@ -43,7 +43,7 @@ public class Grabbable : InteractableHandler {
             code.Holding = this.gameObject;
             code.IsHolding = true;
         } else {
-            this.gameObject.SetActive(false);
+            //this.gameObject.SetActive(false);
         }
         code.AddInventory(this.gameObject);
     }

@@ -17,6 +17,19 @@ public class BoatInteract : BrokenInteractable
     [SerializeField] private bool isFixing = false;
     private bool alreadyInsideCollider = false;
 
+    // *** ADDED FOR GAMEPAD SUPPORT BY JULIEN 
+    private bool isPressed;
+
+    public void OnBoatFix(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+            isPressed = true;
+        else
+            isPressed = false;
+            
+    }
+    // *** END OF MODIFICATION
+
     // Start is called before the first frame update
     new void Start()
     {
@@ -35,7 +48,7 @@ public class BoatInteract : BrokenInteractable
         /* THIS MUST BE CHANGED TO SUPPORT INPUT SYSTEM */
         
         if (isInteractable) {
-            if (Input.GetKey("e") && pct <= 100) {
+            if (isPressed == true && pct <= 100) { // LINE MODIFIED BY JULIEN FOR GAMEPAD SUPPORT
                 pct = Mathf.Lerp(pct, 125f, Time.deltaTime);
                 this.textMesh.text = pct.ToString("F1") + "%";
                 if (pct >= 100) {
@@ -70,7 +83,7 @@ public class BoatInteract : BrokenInteractable
         {
             textMesh.enabled = true;
             isInteractable = true;
-            textMesh.text = "Hold (E) to fix";
+            textMesh.text = "Hold E / (X) to fix";
         }
 
         if (!alreadyInsideCollider && alreadyInteracted && isFixed && code.HasTwoPaddles())

@@ -5,26 +5,33 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
-public class ButtonHandler : MonoBehaviour
+// This script was modified to fit an excercise given by marc-andre larouche in the fall 2019 semester
+// This script was modified on APRIL 11 by Julien Gagnier because it was not working properly -- Had to get it 
+// working in order to properly implement gamepad support
+
+public class ButtonHandler : MonoBehaviour, IPointerEnterHandler, IDeselectHandler, IPointerDownHandler
 {
     private GameManager code;
+
+
     void Start() {
         code = GameManager.instance;
     }
-    public void OnDeselect(PointerEventData eventData)
+
+    public void OnDeselect(BaseEventData eventData)
     {
-        Debug.Log("Deselected");
         GetComponent<Selectable>().OnPointerExit(null);
     }
+
     public void OnPointerDown(PointerEventData eventData)
     {
-        if(eventData.selectedObject.GetComponent<Button>() != null)
+        if (GetComponent<Button>() != null)
         {
             GetComponent<Button>().onClick.Invoke();
             Input.ResetInputAxes();
         }
-        Debug.Log(this.gameObject.name + "Clicked");
     }
+
     public void OnPointerEnter(PointerEventData eventData)
     {
         GetComponent<Selectable>().Select();

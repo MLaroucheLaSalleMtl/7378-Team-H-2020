@@ -20,7 +20,7 @@ public class ObjectInteract : MonoBehaviour
             Vector3 forward = transform.TransformDirection(Vector3.forward);
             Ray ray = camera.ScreenPointToRay(Mouse.current.position.ReadValue());
             
-            if (Physics.Raycast(ray, out hit, rayLength, layerMaskInteract)) 
+            if (Physics.Raycast(ray, out hit, rayLength, layerMaskInteract, QueryTriggerInteraction.Ignore)) 
             {
                 raycastedObject = hit.collider.gameObject;
                 

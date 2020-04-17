@@ -12,13 +12,13 @@ public class RemovedFrom : MonoBehaviour
     void Start()
     {
         GetComponent<BoxCollider>().isTrigger = true;
-        GetComponent<BoxCollider>().size = new Vector3(2f,2f,2f);
         aftermath.SetActive(false);
     }
 
     void OnTriggerExit(Collider other) {
         if (other.gameObject.Equals(objectRemoved)) {
             aftermath.SetActive(true);
+            Destroy(gameObject);
         }
     }
 }

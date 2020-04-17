@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class MenuMain : MonoBehaviour
@@ -25,6 +26,7 @@ public class MenuMain : MonoBehaviour
     {
         Invoke("PanelToggle", 0.01f);
     }
+
     void PanelToggle()
     {
         PanelToggle(0);
@@ -35,6 +37,7 @@ public class MenuMain : MonoBehaviour
     {
         
     }
+
     public void SavePrefs()
     {
         PlayerPrefs.Save();
