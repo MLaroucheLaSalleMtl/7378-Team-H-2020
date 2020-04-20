@@ -39,12 +39,12 @@ public class Grabbable : InteractableHandler {
         if (ivn.inventory.Count >= ivn.InventorySize) return;
 
         //if there is something in hand, put item in inventory and not hands
-        if (!code.IsHolding) {
+        //if (!code.IsHolding) {
             code.Holding = this.gameObject;
             code.IsHolding = true;
-        } else {
+        //} else {
             //this.gameObject.SetActive(false);
-        }
+        //}
         code.AddInventory(this.gameObject);
     }
     protected void ChangeLayer(int layer) {

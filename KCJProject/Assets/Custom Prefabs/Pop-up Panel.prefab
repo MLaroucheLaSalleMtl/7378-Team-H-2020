@@ -76,7 +76,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: ..... ouch, my head..... What is this? What happened? Where am I? I need
+    to find a way out of here..... I should follow this path and see where it goes....
 --- !u!1 &1689209718625294308
 GameObject:
   m_ObjectHideFlags: 0
@@ -94,7 +95,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1689209718625294309
 RectTransform:
   m_ObjectHideFlags: 0

@@ -100,6 +100,14 @@
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Close",
+                    "type": "Button",
+                    "id": "e3b4c2f3-7ad1-43b1-96e6-e8ec3db022ed",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -240,7 +248,7 @@
                     "id": "c1f7a91b-d0fd-4a62-997e-7fb9b69bf235",
                     "path": "<Gamepad>/rightStick",
                     "interactions": "",
-                    "processors": "StickDeadzone",
+                    "processors": "StickDeadzone,ScaleVector2(x=2.5,y=2.5)",
                     "groups": ";Gamepad",
                     "action": "Look",
                     "isComposite": false,
@@ -347,17 +355,6 @@
                 },
                 {
                     "name": "",
-                    "id": "1698a571-3936-491d-8b90-973796208e3d",
-                    "path": "<Gamepad>/buttonEast",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "Crouch",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "215fa280-6835-4ae3-bdde-69d8f5b6266c",
                     "path": "<Keyboard>/leftCtrl",
                     "interactions": "",
@@ -402,9 +399,9 @@
                 },
                 {
                     "name": "",
-                    "id": "c36f2969-696c-46c4-9940-7f39a9e81a67",
-                    "path": "<Gamepad>/buttonEast",
-                    "interactions": "",
+                    "id": "060eb5dc-acd3-4fec-80e4-c464700f3877",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "Press",
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Interact",
@@ -446,6 +443,17 @@
                 },
                 {
                     "name": "",
+                    "id": "05e1c514-b8ca-4e40-a1e8-b392ef5a3d78",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Drop",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "7b5e14f5-c205-486a-ab25-1452524d0ef4",
                     "path": "<Keyboard>/tab",
                     "interactions": "",
@@ -457,8 +465,8 @@
                 },
                 {
                     "name": "",
-                    "id": "0cf1b83a-56b9-4087-b031-e9126fe12d41",
-                    "path": "<Gamepad>/select",
+                    "id": "a572866b-b25f-4444-8cfb-a35fc574d9d7",
+                    "path": "<Gamepad>/leftShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
@@ -479,12 +487,12 @@
                 },
                 {
                     "name": "",
-                    "id": "6596dc41-2f6d-4ea4-8967-28c0492c7708",
-                    "path": "<Gamepad>/buttonWest",
+                    "id": "7573d90a-99f3-47b0-833f-9bee4170ffd3",
+                    "path": "<Gamepad>/select",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Use",
+                    "action": "Objective",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -496,6 +504,39 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Use",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "63a00386-b0fb-42d2-b226-95c0552f4a88",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Use",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e25d15d0-8042-4be7-8aeb-66ba7e2d09b1",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Close",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1332cdbe-d88e-471b-90ab-58fb6757e20a",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Close",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

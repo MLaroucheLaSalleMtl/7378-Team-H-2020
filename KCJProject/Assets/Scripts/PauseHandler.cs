@@ -23,7 +23,7 @@ public class PauseHandler : MonoBehaviour
     }
 
     public void OnEscape(InputAction.CallbackContext context) {
-        if (code.isInventory || code.isTracker) return;
+        if (code.isInventory || code.isTracker || code.isPopUp || code.isDeath) return;
         if (context.performed) {
             isPaused = !isPaused;
             PauseGame(isPaused);

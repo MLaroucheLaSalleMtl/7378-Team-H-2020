@@ -16,6 +16,7 @@ public class LoadingScene : MonoBehaviour
             async.allowSceneActivation = true;
         }
     }
+
     public void BtnLoadScene(int i)
     {
         if(async == null)
@@ -24,6 +25,7 @@ public class LoadingScene : MonoBehaviour
             async.allowSceneActivation = true;
         }
     }
+
     public void BtnLoadScene(string s)
     {
         if(async == null)

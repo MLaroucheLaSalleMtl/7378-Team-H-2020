@@ -20,6 +20,7 @@ public class TrackerHandler : MonoBehaviour
     private Text objTextUI, taskTextUI;
     [Tooltip("Button Prefab")] [SerializeField] private Selectable btn;
     private float btnObjH; //height of prefab button - used for screen positions calculations
+    [Tooltip("Time that a new objective is shown on screen")] [SerializeField] private float timeScreen = 2f;
 
     [Header("Panel management - change it to GameManager after tests")]
     [Tooltip("Panel for UI should be attached here")] [SerializeField] private GameObject UI;
@@ -70,17 +71,20 @@ public class TrackerHandler : MonoBehaviour
             o.GetComponentInChildren<Text>().text = o.GetComponent<Objective>().Task;
             o.gameObject.transform.SetParent(scrollArea.transform);
             RectTransform rect = o.GetComponent<RectTransform>();
+
             rect.anchorMin = new Vector2(0f, 1f);
             rect.anchorMax = new Vector2(1f, 1f);
             rect.pivot = new Vector2(0.5f, 1f);
             rect.localScale = new Vector3(1f, 1f, 1f);
 
-            ///Adapted from https://answers.unity.com/questions/888257/access-left-right-top-and-bottom-of-recttransform.html by Caue
-            rect.offsetMin = new Vector2(0, rect.offsetMin.y); //set left
-            rect.offsetMax = new Vector2(-0, rect.offsetMax.y); //set Right
-            ///
+            o.transform.localPosition = new Vector3(o.transform.localPosition.x, 330 + j, o.transform.localPosition.z);
 
-            o.transform.localPosition = new Vector3(0f, 0f + j, 0f);
+            ///Adapted from https://answers.unity.com/questions/888257/access-left-right-top-and-bottom-of-recttransform.html by Caue
+            rect.offsetMin = new Vector2(0, rect.offsetMin.y); //set left, bottom
+            rect.offsetMax = new Vector2(-0, rect.offsetMax.y); //set Right
+            ///  
+            Debug.Log("J " + j + " " +rect.offsetMin + "L R" + rect.offsetMax);
+                                                               
 
             //update next place for next objective
             j += btnObjH;
@@ -100,16 +104,16 @@ public class TrackerHandler : MonoBehaviour
                     scrollArea.GetComponentsInChildren<Selectable>()[scrollArea.GetComponentsInChildren<Selectable>().Length-1].Select();
                 }
                 catch {
-                    Debug.Log("no objectives");
+                    Debug.Log("No Objectives");
                 }
 
-                code.DeactivateController(false);
+                code.ActivateController(false);
             } else {
                 inventoryPanel.SetActive(false);
                 UI.SetActive(true);
                 trackerPanel.SetActive(false);
 
-                code.DeactivateController(true);
+                code.ActivateController(true);
             }
             code.isTracker = isTracker = !isTracker;
         }
@@ -133,7 +137,6 @@ public class TrackerHandler : MonoBehaviour
     }
     //updates the tracker menu with the latest objective
     private void UpdateTracker() {
-        Debug.Log("Update");
         Objective o = objectives[objectives.Count - 1].GetComponent<Objective>();
         currDescTxt.text = o.Description;
         currTaskTxt.text = o.Task;
@@ -146,13 +149,14 @@ public class TrackerHandler : MonoBehaviour
         if (!obj.isDone) {
             objTextUI.text = "New Objective: ";
             panelObj.GetComponent<Image>().color = colorNormal;
+            Invoke("DeactivatePanel", this.timeScreen);
         } else {
             objTextUI.text = "Objective Completed: ";
-            Invoke("ChangeColor", 0.5f);
+            Invoke("ChangeColor", 0.2f);
+            Invoke("DeactivatePanel", 1f);
         }
         panelObj.SetActive(true);
         taskTextUI.text = obj.Task;
-        Invoke("DeactivatePanel", 4f);
     }
 
     private void DeactivatePanel() {

@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(SphereCollider))]
 public class BoatInteract : BrokenInteractable
 {
     private static TrackerHandler tracker;   
-    [SerializeField] private GameObject exitPanel;
+    //[SerializeField] private GameObject exitPanel;
     [SerializeField] private GameObject fixedBoat, exit;
     [SerializeField] private GameObject wrench;
     [Tooltip("Here we attach the text panel telling the player to look for paddles after he fixes the boat")] [SerializeField] private GameObject textPanelFixed;
@@ -16,6 +17,10 @@ public class BoatInteract : BrokenInteractable
     private bool isFixed = false;
     [SerializeField] private bool isFixing = false;
     private bool alreadyInsideCollider = false;
+
+    [SerializeField] private AudioSource aSource;
+
+    private AsyncOperation async; // added here because of build bug by julien
 
     // *** ADDED FOR GAMEPAD SUPPORT BY JULIEN 
     private bool isPressed;
@@ -37,7 +42,7 @@ public class BoatInteract : BrokenInteractable
         tracker = TrackerHandler.instance;
         fixedBoat.SetActive(false);
         gameObject.GetComponent<SphereCollider>().isTrigger = true;
-        exitPanel.gameObject.SetActive(false);
+        //exitPanel.gameObject.SetActive(false);
         wrench.gameObject.SetActive(false);
         code = GameManager.instance;
     }
@@ -88,14 +93,21 @@ public class BoatInteract : BrokenInteractable
 
         if (!alreadyInsideCollider && alreadyInteracted && isFixed && code.HasTwoPaddles())
         {
-            
+            //code.isPopUp = true;
             Debug.Log("You have two paddles and are near the boat");
-            exitPanel.gameObject.SetActive(true);
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-            code.PauseGame(true);
+            //exitPanel.gameObject.SetActive(true);
+            //Cursor.lockState = CursorLockMode.None;
+            //Cursor.visible = true;
+            //code.PauseGame(true);
             alreadyInsideCollider = true;
             code.FinishLevel();
+
+            if (async == null)
+            {
+                Scene currentScene = SceneManager.GetActiveScene();
+                async = SceneManager.LoadSceneAsync(currentScene.buildIndex + 1);
+                async.allowSceneActivation = true;
+            }
         }
     }
 

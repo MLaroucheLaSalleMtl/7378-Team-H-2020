@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour {
     [Tooltip("Reference for Text Mesh Pro for UI - Add or Drop item")] [SerializeField] private TextMeshProUGUI txtUI;
     private int inventorySize;
     [SerializeField] private int selectedItem;
-    [HideInInspector] public bool pause = false, isInventory = false, isTracker = false;
+    [HideInInspector] public bool pause = false, isInventory = false, isTracker = false, isPopUp = false, isDeath = false; // isPopUP and isDeath added by julien
 
     [Header("Animation Properties")] [SerializeField] private Animator damageAnim;
     [SerializeField] public GameObject damagePanel;
@@ -106,8 +106,8 @@ public class GameManager : MonoBehaviour {
         checkPointHandlerCode.lastCheckPointRot = Player.transform.rotation;
         checkPointHandlerCode.GetCurrentHealth();
         checkPointHandlerCode.Save();
-        GetComponent<LoadingScene>().BtnLoadScene("Level Two");
     }
+
     // Update is called once per frame
     void Update() {
 
@@ -117,12 +117,12 @@ public class GameManager : MonoBehaviour {
     // Handles pause game (Use this function to pause physics, time and raycast)
     public void PauseGame(bool pause) {
         if (isInventory || isTracker) return;
-        DeactivateController(!pause);
+        ActivateController(!pause);
         PauseTime(pause);
         this.pause = pause;
     }
-    //activates and deactivates player controls
-    public void DeactivateController(bool flag) {
+    //activates and deactivates player controls False -> deactivates True -> activate
+    public void ActivateController(bool flag) {
         Player.GetComponent<FirstPersonController>().enabled = flag;
         Player.GetComponent<CharacterController>().enabled = flag;
     }
@@ -145,13 +145,13 @@ public class GameManager : MonoBehaviour {
                 inventoryPanel.SetActive(true);
                 Ivn.HighlightIvn();
                 UI.SetActive(false);
-                DeactivateController(false);
+                ActivateController(false);
                                 
                 Ivn.DescMenu(false);
             } else { //If tab is pressed and the inventory is showing -> close inventory
                 inventoryPanel.SetActive(false);
                 UI.SetActive(true);
-                DeactivateController(true);
+                ActivateController(true);
                 SelectedItem = 0;
             }
             isInventory = !isInventory;
@@ -212,7 +212,19 @@ public class GameManager : MonoBehaviour {
             return false;
         }
     }
+    public bool HasRope()
+    {
+        int rope = 0;
+        foreach(GameObject item in Ivn.inventory)
+        {
+            if(item.gameObject.tag == "Rope")
+            {
+                rope += 1;
+            }
 
+        }
+        return true;
+    }
     public void CheckIsPlayerDead()
     {
         if (health <= 0)
@@ -234,6 +246,7 @@ public class GameManager : MonoBehaviour {
 
     public void FlowerDamage(float flowerDamageOverTime)
     {
+        if (health <= 0) return;
         health -= flowerDamageOverTime * Time.deltaTime;
         damageAnim.SetTrigger("Damage");
         healthbar.value = health; //updates slider
@@ -259,11 +272,13 @@ public class GameManager : MonoBehaviour {
     }
     //Handles player death
     private void Dead() {
+        isDeath = true;
         ambientNoise.volume = 0;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         PauseGame(true);
         deathPanel.SetActive(true);
+        deathPanel.GetComponentsInChildren<Selectable>()[0].Select(); // try to pre select a button for gamepad support
         health = 0;
         damageAnim.SetTrigger("StopDamage");
     }

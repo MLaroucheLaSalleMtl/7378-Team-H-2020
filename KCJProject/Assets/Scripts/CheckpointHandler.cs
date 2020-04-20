@@ -53,6 +53,7 @@ public class CheckpointHandler : MonoBehaviour
     {
         if (checkPointEnable) //respawn in checkpoint
         {
+            code.isDeath = false;
             Read();//every time the player respawns, grab saved position
             code.DeactivateDeath();
             code.Player.SetActive(false);
@@ -65,6 +66,7 @@ public class CheckpointHandler : MonoBehaviour
         else if (!checkPointEnable) //respawn in first spawn
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            code.isDeath = false;
         }
     }
 

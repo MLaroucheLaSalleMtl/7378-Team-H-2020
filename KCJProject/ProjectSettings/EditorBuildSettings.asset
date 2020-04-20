@@ -15,12 +15,21 @@ EditorBuildSettings:
     path: Assets/Scenes/Level One.unity
     guid: 808bc4f24ad1e9d4eb1cad05d4b26afd
   - enabled: 1
+    path: Assets/Scenes/Loading 2.unity
+    guid: fb1f669a8f7fd0c42a2b394e362d0596
+  - enabled: 1
     path: Assets/Scenes/Level Two.unity
     guid: f13b27b7a8ce7ad4e9222a3cde0bce60
   - enabled: 1
+    path: Assets/Scenes/Loading 3.unity
+    guid: 3bf42aad5e928b3419397d080692fc80
+  - enabled: 1
+    path: Assets/Scenes/Level Three (Lab).unity
+    guid: efd1d8d73d533d24688ce3b2d08be0a8
+  - enabled: 1
     path: Assets/Scenes/PauseMenu.unity
     guid: ff92a35aa2c7c5b44abebda59bcf0a6d
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Level Two.unity
     guid: f13b27b7a8ce7ad4e9222a3cde0bce60
   m_configObjects:

@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class Wrench : Grabbable
 {
+    [SerializeField] private AudioSource aSource;
+
     // Start is called before the first frame update
     new void Start()
     {
         base.Start();
         base.id = 0;
     }
-    public override void DoInteraction() {        
+    public override void DoInteraction() {
+        aSource.Play();
         base.DoInteraction();
         ShowInHands();
     }

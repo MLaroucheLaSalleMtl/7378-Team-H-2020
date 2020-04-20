@@ -34,15 +34,19 @@ public class FlowerDamage : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
-        code.damagePanel.SetActive(true);
-        flowerCollision = true;
+        if (other.tag == "Player") { //condition added by caue
+            code.damagePanel.SetActive(true);
+            flowerCollision = true;
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        code.damagePanel.SetActive(false);
-        code.StopDamageAnim();
-        flowerCollision = false;
+        if (other.tag == "Player") { //condition added by caue
+            code.damagePanel.SetActive(false);
+            code.StopDamageAnim();
+            flowerCollision = false;
+        }
     }
 
     private void DamageSound()

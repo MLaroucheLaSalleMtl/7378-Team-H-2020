@@ -24,7 +24,6 @@ public class Objective : MonoBehaviour
 
     public void OnSelectObj() {
         tracker.ShowSelObj(Task, Description);
-        Debug.Log(ToString()); 
     }
     public void Completed() {
         isDone = true;

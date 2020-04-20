@@ -53,7 +53,7 @@ public class PopupText : MonoBehaviour
                 alertSound.Play();
                 alreadyInteracted = true;
                 tracker.CompletedObjective(obj);
-                Invoke("Objective", 4.2f);
+                Invoke("Objective", 1.2f);
             }else if(order == 0) {
                 textPanel.gameObject.SetActive(true);
                 alertSound.Play();

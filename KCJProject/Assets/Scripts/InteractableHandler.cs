@@ -36,7 +36,7 @@ public class InteractableHandler : MonoBehaviour
     }
 
     protected void setMesh() {
-        textMesh.SetText(functionName + " \n( E )");
+        textMesh.SetText(functionName + " \n E / (X)");
         textMesh.enabled = false;
     }
     protected virtual void OnTriggerEnter(Collider other) {

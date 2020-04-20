@@ -16,7 +16,6 @@ public class Rope : Grabbable
     }
     protected override bool ShowInHands()
     {
-
         if (!base.ShowInHands()) return false;
         //Sets the object position relatable to the camera*/
         gameObject.transform.localPosition = new Vector3(gameObject.transform.localPosition.x + 0.46f, gameObject.transform.localPosition.y - 0.75f, gameObject.transform.localPosition.z + 0.05f);

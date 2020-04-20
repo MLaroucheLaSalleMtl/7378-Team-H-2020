@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class Paddle : Grabbable
 {
+    [SerializeField] private AudioSource aSource;
+
     new void Start() {
         base.Start();
         base.id = 1;
     }
     public override void DoInteraction() {
         base.DoInteraction();
+        aSource.Play();
         ShowInHands();
     }
     protected override bool ShowInHands() {
